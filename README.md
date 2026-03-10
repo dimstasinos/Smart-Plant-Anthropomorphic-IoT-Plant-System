@@ -74,9 +74,7 @@ smart-plant/
 │   ├── exit_style.css           # Exit page styles
 │   ├── favicon-32x32.png        # Site favicon
 │   └── expressions/             # GIF/PNG emoji expressions (not included in repo)
-│
-└── thesis/
-    └── diploma_thesis_DimitriosStasinos.pdf
+
 ```
 
 ---
