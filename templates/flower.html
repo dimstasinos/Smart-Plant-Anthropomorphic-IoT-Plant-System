@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Chat</title>
+    <script src="/static/user_check.js"></script>
+    <link rel="icon" href="/static/favicon-32x32.png">
+    <link rel="stylesheet" href="/static/flower_page_style.css">
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div id="window">
+        <div id="header">
+            <div id="intruction_personality_div">
+                <button id="username_button">Άλλαξε όνομα</button>
+                <button id="intruction_button">Οδηγίες</button>
+            </div>
+        </div>
+        <div id="main-panel">
+            <div id="user-panel">
+                <div id="welcome-title">
+                    <h2 id="welcome"></h2>
+                </div>
+                <div id="chat-bar">
+                    <div id="message-input">
+                        <a id="emoji">🌼</a>
+                        <textarea rows="1" id="message" placeholder="Γράψε το μήνυμά σου..."></textarea>
+                    </div>
+                    <button id="send-to-llm">Send</button>
+                </div>
+            </div>
+            <div id="buttons">
+                <div id="spray">
+                    <button id="spray_button">Ψέκασμα Φύλλων</button>
+                </div>
+                <div id='logout_button'>
+                    <button id="logout">Αποσύνδεση</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="instruction_modal">
+        <div id="modal_content">
+            <span id="close">&times;</span>
+            <h2>Οδηγίες Χρήσης</h2>
+            <p>Εδώ μπορείς να συνομιλήσεις με το φυτό.</p>
+            <ul id="instructions_list">
+                <li>Γράψε το μήνυμά σου στο πεδίο κειμένου και πάτησε "Send" για να στείλεις το μήνυμα.</li>
+                <li>Χρησιμοποίησε το κουμπί "Ψέκασμα Φύλλων" εάν έχεις ψεκάσει το φυτό με νερό.</li>
+                <li>Πάτησε "Αποσύνδεση" για να αποσυνδεθείς από το σύστημα.</li>
+                <li>Εάν είσαι ανενεργός για τρία λεπτά, θα αποσυνδεθείς αυτόματα.</li>
+                <li>Το πότισμα να γίνεται όσο πιο κοντά στον αισθητήρα γίνεται.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="name_modal">
+        <div id="modal_name_content">
+            <span id="close_username">&times;</span>
+            <h2>Πως σε λένε;</h2>
+            <div id="input_modal">
+                <input type="text" id="username" autocomplete="off" placeholder="Πληκτρολόγησε το όνομά σου...">
+            </div>
+            <div id="username_modal_div">
+                <button id="send_name">Αποστολή</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script src="/static/flower_page_script.js"></script>
+
+</html>
