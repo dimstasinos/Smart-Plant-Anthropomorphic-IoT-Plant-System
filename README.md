@@ -38,16 +38,43 @@ Analysis Scripts
 ## Repository Structure
 
 ```
-├── raspberry_pi.py         # Sensor reading & server communication
-├── server.py               # Flask + Socket.IO server, Gemini API integration
-├── plantScreen.py          # Display controller (GIFs, text, emoji)
-├── expressions_path.py        # GIF/expression path mappings per personality
-├── nmf.py                     # NMF topic modeling on chat data
-├── build_data.py              # Data preparation pipeline
-├── analyze_chat.py            # Chat interaction analysis
-├── analyze_phase_metrics.py   # Evaluation phase metrics & statistics
-└── thesis/
-    └── diploma_thesis_DimitriosStasinos.pdf
+smart-plant/
+│
+├── raspberry_pi.py              # Sensor reading & communication with server
+├── plantScreen.py               # Display controller (GIFs, text, emoji on screen)
+├── expressions_path.py          # GIF/expression path mappings per mood state
+├── tools.py                     # Utility functions (e.g. sunrise/sunset detection)
+│
+├── server.py                    # Flask + Socket.IO server, Gemini API integration
+│
+├── prompts/
+│   ├── llm_prompt.txt           # Base LLM system prompt (role, rules, plant info)
+│   ├── happy.txt                # Happy personality prompt
+│   ├── angry.txt                # Angry personality prompt
+│   └── sad.txt                  # Sad personality prompt
+│
+├── config/
+│   ├── plant_thresholds.json    # Sensor threshold values for plant needs
+│   └── need_keys.json           # Need state tracking template
+│
+├── templates/
+│   ├── flower.html              # Main chat interface
+│   ├── wait.html                # Waiting page (another user is active)
+│   ├── inactivity.html          # Inactivity logout page
+│   └── exit.html                # Logout confirmation page
+│
+├── static/
+│   ├── flower_page_script.js    # Main chat page logic
+│   ├── flower_page_style.css    # Main chat page styles
+│   ├── user_check.js            # User session check on page load
+│   ├── wait_script.js           # Wait page logic
+│   ├── wait_style.css           # Wait page styles
+│   ├── inactivity_script.js     # Inactivity page logic
+│   ├── inactivity_style.css     # Inactivity page styles
+│   ├── exit_style.css           # Exit page styles
+│   ├── favicon-32x32.png        # Site favicon
+│   └── expressions/             # GIF/PNG emoji expressions (not included in repo)
+
 ```
 
 ---
