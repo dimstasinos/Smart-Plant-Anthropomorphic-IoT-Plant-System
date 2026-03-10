@@ -19,10 +19,10 @@ The goal is to encourage plant care engagement by making the plant feel like a s
 ```
 Raspberry Pi 4B
  ├── Sensors: DHT22 (temp/humidity), SEN0193 (soil moisture), VEML7700 (light)
- ├── Display: Screen showing GIFs + text via plantScreen_v3.py
+ ├── Display: Screen showing GIFs + text
  └── Communicates with Flask/Socket.IO server
 
-Flask Server (server_v6.py)
+Flask Server
  ├── Gemini API → LLM-generated personality responses
  ├── Google Firestore → conversation & sensor data storage
  └── Web chat interface for users
@@ -38,9 +38,9 @@ Analysis Scripts
 ## Repository Structure
 
 ```
-├── raspberry_pi_v5.py         # Sensor reading & server communication
-├── server_v6.py               # Flask + Socket.IO server, Gemini API integration
-├── plantScreen_v3.py          # Display controller (GIFs, text, emoji)
+├── raspberry_pi.py         # Sensor reading & server communication
+├── server.py               # Flask + Socket.IO server, Gemini API integration
+├── plantScreen.py          # Display controller (GIFs, text, emoji)
 ├── expressions_path.py        # GIF/expression path mappings per personality
 ├── nmf.py                     # NMF topic modeling on chat data
 ├── build_data.py              # Data preparation pipeline
@@ -54,13 +54,22 @@ Analysis Scripts
 
 ## Personalities
 
-| Personality | Trigger Condition | Communication Style |
-|-------------|-------------------|---------------------|
-| 😊 Happy    | All needs met     | Warm, playful, affectionate |
-| 😤 Angry    | Neglected needs   | Grumpy, demanding, sarcastic |
-| 😢 Sad      | Prolonged neglect | Melancholic, emotional |
+Each user is assigned one of three personalities on first login, which remains stable across sessions. The personality defines the **communication style** of the plant, not its emotional state.
 
-The active personality is determined by a **mood score** derived from real-time sensor readings, with dynamic adjustments based on weather data.
+| Personality | Communication Style |
+|-------------|---------------------|
+| 😊 Happy    | Friendly, warm, polite — asks for things gently |
+| 😤 Angry    | Grumpy, ironic, demanding, sarcastic |
+| 😢 Sad      | Melancholic, emotional tone |
+
+Independently of personality, the plant's **visual expression** (GIFs/emojis) changes based on a **mood score** calculated from real-time sensor readings:
+
+| Mood Score | State    | Visual |
+|------------|----------|--------|
+| 0          | Good     | Personality-specific expression |
+| 1          | Neutral  | Neutral emoji |
+| 2–3        | Sad      | Sad emojis |
+| ≥4         | Critical | Crying emojis |
 
 ---
 
@@ -71,7 +80,7 @@ The active personality is determined by a **mood score** derived from real-time 
 - DHT22 — Temperature & Humidity sensor
 - SEN0193 — Capacitive soil moisture sensor
 - VEML7700 — Ambient light sensor
-- Small display screen
+- Display screen
 
 ---
 
@@ -87,14 +96,10 @@ Phase 2 showed significantly higher engagement and improved plant care response 
 
 ## Tech Stack
 
-- **Hardware:** Raspberry Pi 4B, Python
+- **Hardware:** Raspberry Pi 4B
 - **Backend:** Flask, Socket.IO
 - **LLM:** Google Gemini API
 - **Database:** Google Firestore
 - **Analysis:** scikit-learn (NMF, Logistic Regression), pandas, ANOVA
 
----
 
-## License
-
-This project was developed as a diploma thesis at the University of Patras. Feel free to use it for academic or research purposes with attribution.
